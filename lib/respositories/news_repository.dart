@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:agram_news/models/news_model.dart';
 import 'base_news_repository.dart';
 import 'package:http/http.dart' as http;
@@ -6,6 +7,7 @@ import 'package:http/http.dart' as http;
 class NewsRepository extends BaseNewsRepository {
   @override
   Future<List<NewsModel>> getNews() async {
+    log('message 11');
     final client = http.Client();
     final queryParameters = {
       'country': 'us',

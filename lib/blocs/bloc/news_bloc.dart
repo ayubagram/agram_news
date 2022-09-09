@@ -15,7 +15,9 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       : _repository = repository,
         super(const NewsInitial(loading: true)) {
     on<LoadNews>((event, emit) async {
+      log('18');
       try {
+        log('20');
         final news = await _repository.getNews();
         emit(NewsLoaded(loading: false, news: news));
       } catch (e) {

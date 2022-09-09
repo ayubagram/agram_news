@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:agram_news/blocs/bloc/news_bloc.dart';
 import 'package:agram_news/respositories/news_repository.dart';
+import 'package:agram_news/widgets/custom_image_provider.dart';
 import 'package:agram_news/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -89,11 +91,12 @@ class HomePage extends StatelessWidget {
                           height: 200,
                           color: Colors.white,
                           width: double.infinity,
-                          // child: CustomImageProvider(image: news.urlToImage),
+                          child: news.urlToImage != null ? CustomImageProvider(image: news.urlToImage) : const SizedBox(),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(news.title),
@@ -111,7 +114,7 @@ class HomePage extends StatelessWidget {
                 itemCount: state.news.length,
               );
             } else {
-              return const Center(child: Text('Somthig went wrong'));
+              return const Center(child: Text('Something went wrong'));
             }
           },
         ),
